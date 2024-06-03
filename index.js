@@ -14,6 +14,12 @@ app.use(cors({ optionsSuccessStatus: 200 })); // some legacy browsers choke on 2
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
+app.get('/api/whoami', function (req, res) {
+  res.json({"ipaddress": req.ip,
+  "language": req.headers["accept-language"],
+    "software": req.headers["user-agent"]})
+});
+
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
